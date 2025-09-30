@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import IDAO.IDaoPrenda;
 import java.util.ArrayList;
 import modelo.Contenedor;
 import modelo.Estado;
@@ -14,7 +15,7 @@ import serializadora.SerializadoraContenedores;
  *
  * @author nataliasabogalrada
  */
-public class DAOPrenda {
+public class DAOPrenda implements IDaoPrenda{
 
     private Contenedor[][] contenedores;
 
@@ -106,10 +107,22 @@ public class DAOPrenda {
         }
     }
 
-    public void entregarContenedor(int fila, int columna) {
+    public boolean entregarContenedor(int fila, int columna, String respuesta) {
         Contenedor aux = contenedores[fila][columna];
-        if (aux.getPrendas().isEmpty() && aux.getEstado().equals(Estado.ALQUILADO) && aux == null) {
-            aux.getEstado().equals(Estado.DESHABILITADO);
+
+        if (aux != null && aux.getEstado().equals(Estado.ALQUILADO) && aux.getPrendas().isEmpty() && aux.getRespuestaSecreta() != null && aux.getRespuestaSecreta().equals(respuesta)) {
+
+            aux.setEstado(Estado.DISPONIBLE);
+            aux.setEncargado(null);
+            aux.setFechaAlquiler(null);
+            aux.setValorAlquiler(0);
+            aux.setPreguntaSecreta(null);
+            aux.setRespuestaSecreta(null);
+
+            SerializadoraContenedores.getInstance().escribirContenedor();
+            return true;
+        } else {
+            return false;
         }
     }
 

@@ -5,6 +5,7 @@
 package controlador;
 
 import DAO.DAOContenedor;
+import IDAO.IDaoContenedor;
 import modelo.Contenedor;
 import serializadora.SerializadoraContenedores;
 
@@ -14,11 +15,11 @@ import serializadora.SerializadoraContenedores;
  */
 public class ControladorPrincipal {
 
-    DAOContenedor dao;
+    IDaoContenedor dao;
 
     public ControladorPrincipal() {
         this.dao = new DAOContenedor(0, 0);
-        
+
     }
 
     public Contenedor entregarContenedor(int fila, int columna) {
@@ -36,6 +37,5 @@ public class ControladorPrincipal {
     public boolean estaAlquilada(int fila, int columna) {
         return dao.estaAlquilada(fila, columna);
     }
-    
-    
+
 }

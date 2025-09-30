@@ -5,6 +5,7 @@
 package controlador;
 
 import DAO.DAOContenedor;
+import IDAO.IDaoContenedor;
 import modelo.Contenedor;
 
 /**
@@ -13,7 +14,7 @@ import modelo.Contenedor;
  */
 public class ControladorDeshabilitarContenedor {
 
-    DAOContenedor dao;
+    IDaoContenedor dao;
     int fila;
     int columna;
 

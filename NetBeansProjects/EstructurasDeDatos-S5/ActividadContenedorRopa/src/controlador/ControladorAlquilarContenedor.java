@@ -5,6 +5,7 @@
 package controlador;
 
 import DAO.DAOPrenda;
+import IDAO.IDaoPrenda;
 
 /**
  *
@@ -12,7 +13,7 @@ import DAO.DAOPrenda;
  */
 public class ControladorAlquilarContenedor {
 
-    DAOPrenda dao;
+    IDaoPrenda dao;
     int fila;
     int columna;
 
@@ -33,6 +34,12 @@ public class ControladorAlquilarContenedor {
     public String preguntaSecreta(int fila, int columna) {
         return dao.preguntaSecreta(fila, columna);
     }
-    
-   
+
+    public boolean entregarContenedor(int fila, int columna, String respuesta) throws RuntimeException {
+        if (!dao.getListaPrendas(fila, columna).isEmpty()) {
+            throw new RuntimeException("La lista del contenedor debe de estar vacia antes de entregarlo");
+        }
+        return dao.entregarContenedor(fila, columna, respuesta);
+    }
+
 }

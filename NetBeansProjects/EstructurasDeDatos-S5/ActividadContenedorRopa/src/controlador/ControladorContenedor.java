@@ -5,6 +5,7 @@
 package controlador;
 
 import DAO.DAOPrenda;
+import IDAO.IDaoPrenda;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import modelo.Contenedor;
@@ -16,7 +17,7 @@ import modelo.Prenda;
  */
 public class ControladorContenedor {
 
-    DAOPrenda dao;
+    IDaoPrenda dao;
     int fila;
     int columna;
 
@@ -74,13 +75,4 @@ public class ControladorContenedor {
     public void vaciarContenedor(int fila, int columna) {
         dao.vaciarContenedor(fila, columna);
     }
-
-    public void entregarContenedor(int fila, int columna) throws RuntimeException{
-        if (dao.getListaPrendas(fila, columna) != null) {
-            
-        }
-        dao.entregarContenedor(fila, columna);
-    }
-
-    
 }

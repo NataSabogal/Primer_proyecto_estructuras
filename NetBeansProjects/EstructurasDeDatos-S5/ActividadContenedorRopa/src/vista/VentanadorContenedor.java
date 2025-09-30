@@ -268,7 +268,7 @@ public class VentanadorContenedor extends javax.swing.JFrame {
                 limpiarCampos();
                 JOptionPane.showMessageDialog(null, "Prenda guardada");
             } catch (RuntimeException e) {
-                JOptionPane.showMessageDialog(null, e);
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         } else {
             JOptionPane.showMessageDialog(null, "Asegurese de digitar todos los campos");
@@ -310,7 +310,7 @@ public class VentanadorContenedor extends javax.swing.JFrame {
                     limpiarCampos();
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e);
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         } else {
             JOptionPane.showMessageDialog(null, "Asegurese de digitar todos los campos");
@@ -328,7 +328,7 @@ public class VentanadorContenedor extends javax.swing.JFrame {
                     limpiarCampos();
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e);
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
 
         } else {
@@ -349,8 +349,11 @@ public class VentanadorContenedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVaciarActionPerformed
 
     private void btnEntregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntregarActionPerformed
-        controller.entregarContenedor(fila, columna);
-       
+        VentanaSeguridad seg = new VentanaSeguridad(fila, columna);
+        seg.setVisible(true);
+        seg.setLocationRelativeTo(null);
+        this.dispose();
+
     }//GEN-LAST:event_btnEntregarActionPerformed
 
     public void llenarTabla() {
