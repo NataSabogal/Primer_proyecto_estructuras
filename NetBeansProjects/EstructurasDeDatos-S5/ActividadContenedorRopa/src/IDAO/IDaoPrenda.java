@@ -1,11 +1,11 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package IDAO;
 
-import java.util.ArrayList;
 import modelo.Prenda;
+import util.Lista;
 
 /**
  *
@@ -13,7 +13,7 @@ import modelo.Prenda;
  */
 public interface IDaoPrenda {
 
-    public ArrayList<Prenda> getListaPrendas(int fila, int columna);
+    public Lista<Prenda> getListaPrendas(int fila, int columna);
 
     public Prenda buscarPrenda(int fila, int columna, String ref);
 

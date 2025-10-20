@@ -6,6 +6,7 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import util.Lista;
 
 /**
  *
@@ -20,11 +21,11 @@ public class Contenedor implements Serializable {
     private String preguntaSecreta;
     private String respuestaSecreta;
     private String motivoDeshabilitacion;
-    private ArrayList<Prenda> prendas;
+    private Lista<Prenda> prendas;
 
     public Contenedor() {
         this.estado = Estado.DISPONIBLE;
-        this.prendas = new ArrayList<>();
+        this.prendas = new Lista<>();
     }
 
     public Contenedor(Estado estado, String encargado, String fechaAlquiler, double valorAlquiler, String preguntaSecreta, String respuestaSecreta, String motivoDeshabilitacion) {
@@ -35,7 +36,7 @@ public class Contenedor implements Serializable {
         this.preguntaSecreta = preguntaSecreta;
         this.respuestaSecreta = respuestaSecreta;
         this.motivoDeshabilitacion = motivoDeshabilitacion;
-        this.prendas = new ArrayList<>();
+        this.prendas = new Lista<>();
     }
 
     public Estado getEstado() {
@@ -94,7 +95,7 @@ public class Contenedor implements Serializable {
         this.motivoDeshabilitacion = motivoDeshabilitacion;
     }
 
-    public ArrayList<Prenda> getPrendas() {
+    public Lista<Prenda> getPrendas() {
         return prendas;
     }
 

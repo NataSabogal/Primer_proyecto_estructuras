@@ -10,12 +10,13 @@ import modelo.Contenedor;
 import modelo.Estado;
 import modelo.Prenda;
 import serializadora.SerializadoraContenedores;
+import util.Lista;
 
 /**
  *
  * @author nataliasabogalrada
  */
-public class DAOPrenda implements IDaoPrenda{
+public class DAOPrenda implements IDaoPrenda {
 
     private Contenedor[][] contenedores;
 
@@ -23,10 +24,12 @@ public class DAOPrenda implements IDaoPrenda{
         this.contenedores = SerializadoraContenedores.getInstance().getContenedor();
     }
 
-    public ArrayList<Prenda> getListaPrendas(int fila, int columna) {
+    @Override
+    public Lista getListaPrendas(int fila, int columna) {
         return contenedores[fila][columna].getPrendas();
     }
 
+    @Override
     public Prenda buscarPrenda(int fila, int columna, String ref) {
         for (int i = 0; i < contenedores[fila][columna].getPrendas().size(); i++) {
             if (contenedores[fila][columna].getPrendas().get(i).getRef().equals(ref)) {
@@ -36,6 +39,7 @@ public class DAOPrenda implements IDaoPrenda{
         return null;
     }
 
+    @Override
     public void guardarPrenda(Prenda prenda, int fila, int columna) {
         Prenda aux = buscarPrenda(fila, columna, prenda.getRef());
         if (aux == null) {
@@ -46,16 +50,18 @@ public class DAOPrenda implements IDaoPrenda{
 
     }
 
+    @Override
     public boolean eliminarPrenda(int fila, int columna, String ref) {
         Prenda aux = buscarPrenda(fila, columna, ref);
         if (aux != null) {
-            contenedores[fila][columna].getPrendas().remove(aux);
+            contenedores[fila][columna].getPrendas().removeObject(aux);
             SerializadoraContenedores.getInstance().escribirContenedor();
             return true;
         }
         return false;
     }
 
+    @Override
     public boolean editarPrenda(int fila, int columna, Prenda pren) {
         Prenda aux = buscarPrenda(fila, columna, pren.getRef());
         if (aux != null) {
@@ -68,6 +74,7 @@ public class DAOPrenda implements IDaoPrenda{
         return false;
     }
 
+    @Override
     public boolean alquilarContenedor(int fila, int columna, String encargado, String fecha, double valor, String pregunta, String respuesta) {
         if (contenedores[fila][columna].getEstado().equals(Estado.DISPONIBLE)) {
             contenedores[fila][columna].setEncargado(encargado);
@@ -83,6 +90,7 @@ public class DAOPrenda implements IDaoPrenda{
         return false;
     }
 
+    @Override
     public String preguntaSecreta(int fila, int columna) {
         Contenedor aux = contenedores[fila][columna];
         if (aux.getEstado().ALQUILADO.equals(Estado.ALQUILADO)) {
@@ -91,6 +99,7 @@ public class DAOPrenda implements IDaoPrenda{
         return null;
     }
 
+    @Override
     public boolean respuestaCorrecta(int fila, int columna, String respuesta) {
         String guardada = contenedores[fila][columna].getRespuestaSecreta();
         if (guardada.equals(respuesta)) {
@@ -99,6 +108,7 @@ public class DAOPrenda implements IDaoPrenda{
         return false;
     }
 
+    @Override
     public void vaciarContenedor(int fila, int columna) {
         Contenedor aux = contenedores[fila][columna];
         if (aux.getEstado().equals(Estado.ALQUILADO) && aux != null) {
@@ -107,6 +117,7 @@ public class DAOPrenda implements IDaoPrenda{
         }
     }
 
+    @Override
     public boolean entregarContenedor(int fila, int columna, String respuesta) {
         Contenedor aux = contenedores[fila][columna];
 

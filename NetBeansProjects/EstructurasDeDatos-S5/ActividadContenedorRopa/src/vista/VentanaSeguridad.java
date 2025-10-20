@@ -166,7 +166,7 @@ public class VentanaSeguridad extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtrasControlAsistenciaActionPerformed
 
     private void btnEntregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntregarActionPerformed
-        if (!txtRespuesta.getText().isEmpty()) {
+         if (!txtRespuesta.getText().isEmpty()) {
             try {
                 String resp = txtRespuesta.getText();
                 boolean aux = controller.entregarContenedor(fila, columna, resp);
@@ -181,6 +181,10 @@ public class VentanaSeguridad extends javax.swing.JFrame {
                 }
             } catch (RuntimeException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
+                VentanadorContenedor con = new VentanadorContenedor(fila, columna);
+                con.setVisible(true);
+                con.setLocationRelativeTo(null);
+                this.dispose();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Asegurese de digitar la respuesta");

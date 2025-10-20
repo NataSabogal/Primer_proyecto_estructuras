@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import modelo.Contenedor;
 import modelo.Prenda;
+import util.Lista;
 
 /**
  *
@@ -25,7 +26,7 @@ public class ControladorContenedor {
         this.dao = new DAOPrenda(fila, columna);
     }
 
-    public ArrayList<Prenda> getListaPrendas(int fila, int columna) {
+    public Lista getListaPrendas(int fila, int columna) {
         return dao.getListaPrendas(fila, columna);
     }
 

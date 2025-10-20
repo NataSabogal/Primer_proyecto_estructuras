@@ -4,37 +4,37 @@
  */
 package util;
 
-import modelo.Prenda;
+import java.io.Serializable;
 
 /**
  *
  * @author nataliasabogalrada
  */
-public class Nodo {
+public class Nodo<T> implements Serializable{
 
-    private Nodo siguiente;
-    private Prenda prenda;
+    private Nodo<T> siguiente;
+    private T dato;
 
-    public Nodo(Prenda prenda) {
-        this.prenda = prenda;
+    public Nodo(T dato) {
+        this.dato = dato;
         this.siguiente = null;
 
     }
 
-    public Nodo getSiguiente() {
+    public Nodo<T> getSiguiente() {
         return siguiente;
     }
 
-    public void setSiguiente(Nodo siguiente) {
+    public void setSiguiente(Nodo<T> siguiente) {
         this.siguiente = siguiente;
     }
 
-    public Prenda getPrenda() {
-        return prenda;
+    public T getDato() {
+        return dato;
     }
 
-    public void setPrenda(Prenda prenda) {
-        this.prenda = prenda;
+    public void setDato(T dato) {
+        this.dato = dato;
     }
 
 }
